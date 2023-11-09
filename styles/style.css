@@ -9,6 +9,9 @@ html {
 }
 
 .page {
+  display: flex;
+  justify-content: center;
+  padding-block-start: 133px;
   inline-size: 1200px;
   block-size: 100%;
   margin: auto;
@@ -35,4 +38,114 @@ fieldset {
 ul,
 ol {
   list-style: none;
+}
+
+.title {
+  color: #fff;
+  font-family: Oswald;
+  font-size: 75px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 94%;
+  text-transform: uppercase;
+}
+
+.content__accent {
+  color: #545050;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 396px;
+  inline-size: 100%;
+  block-size: 534px;
+  align-items: end;
+  gap: 30px;
+  padding-inline: 30px 33px;
+}
+
+.result__video-container {
+  position: relative;
+  block-size: 386px;
+  background-color: #000;
+  margin-block-end: 10px;
+}
+
+.result__video {
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.search-form__fieldset-title {
+  color: #fff;
+  font-family: Fira Sans Condensed;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.content__details {
+  block-size: 100%;
+}
+
+.content__list {
+  position: relative;
+  block-size: 322px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.content__list-item:not(:last-child) {
+  margin-block-end: 30px;
+}
+
+.content__video-card {
+  display: grid;
+  grid-template-columns: 1fr 194px;
+  gap: 8px;
+}
+
+.content__video-card-thumbnail {
+  inline-size: 100%;
+  block-size: 103px;
+  object-fit: cover;
+}
+
+.content__card-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.content__video-card-title {
+  font-family: Oswald, sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 30px */
+  text-transform: uppercase;
+}
+
+.content__video-card-description {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px; /* 90% */
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
