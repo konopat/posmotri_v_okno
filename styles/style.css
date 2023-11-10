@@ -13,6 +13,8 @@ html {
 }
 
 .page {
+  display: flex;
+  align-items: center; /* Центрирует весь контент по дополнительной оси */
   inline-size: 1200px;
   block-size: 100%;
   margin: auto;
@@ -84,7 +86,7 @@ ol {
 /* Content */
 
 .content {
-  padding-block-start: 138px; /* Отступ сверху */
+  /* padding-block-start: 138px; Отступ сверху */
   display: grid; /* Основной лэйаут: 2 колонки, правая с фиксированной шириной, */
   grid-template-columns: 1fr 396px; /* все остальное пространство занимает левая */
   inline-size: 100%; /* Наследует всю ширину страницы */
