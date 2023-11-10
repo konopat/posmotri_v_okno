@@ -4,14 +4,15 @@
   box-sizing: border-box;
 }
 
+fieldset {
+  border: none;
+}
+
 html {
   block-size: 100%;
 }
 
 .page {
-  display: flex;
-  justify-content: center;
-  padding-block-start: 133px;
   inline-size: 1200px;
   block-size: 100%;
   margin: auto;
@@ -40,88 +41,248 @@ ol {
   list-style: none;
 }
 
+/* Кастомные стили начинаются здесь */
+
+/* Общие стили */
+/* Кнопки */
+
+.button {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  font-family: inherit;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: 1px solid white;
+  padding-block: 5px;
+}
+
+.button:active {
+  background-color: #545050;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: solid 1px white;
+  outline-offset: 1px;
+}
+
+.button:hover {
+  cursor: pointer;
+  text-decoration: underline; /* Текст подчеркивается только при наведении */
+}
+
+.more-button {
+  inline-size: 100%;
+}
+
+/* Content */
+
+.content {
+  padding-block-start: 138px; /* Отступ сверху */
+  display: grid; /* Основной лэйаут: 2 колонки, правая с фиксированной шириной, */
+  grid-template-columns: 1fr 396px; /* все остальное пространство занимает левая */
+  inline-size: 100%; /* Наследует всю ширину страницы */
+  block-size: 534px; /* Фиксированная высота */
+  align-items: end; /* Прижимает все к концу по дополнительной оси */
+  gap: 30px; /* Расстояние между колонками */
+  padding-inline: 30px 33px; /* Отступы внутри основного контейнера */
+}
+
+/* Главный заголовок */
+
 .title {
-  color: #fff;
-  font-family: Oswald;
+  color: white;
+  font-family: 'Oswald', sans-serif;
   font-size: 75px;
   font-style: normal;
   font-weight: 700;
-  line-height: 94%;
+  line-height: 93%;
   text-transform: uppercase;
+  margin-block-end: 25px;
 }
 
+/* Используется для стилизации заголовка */
 .content__accent {
   color: #545050;
 }
 
-.content {
-  display: grid;
-  grid-template-columns: 1fr 396px;
-  inline-size: 100%;
-  block-size: 534px;
-  align-items: end;
-  gap: 30px;
-  padding-inline: 30px 33px;
-}
+/* Result */
 
 .result__video-container {
-  position: relative;
-  block-size: 386px;
-  background-color: #000;
-  margin-block-end: 10px;
+  position: relative; /* Для позиционирования прелоадеров */
+  block-size: 386px; /* Фиксированная высота */
+  margin-block-end: 20px;
 }
 
 .result__video {
+  /* Видео растягивается на весь контейнер */
   block-size: 100%;
   inline-size: 100%;
   object-fit: cover;
 }
 
+/* Search form */
+
 .search-form {
+  /* Общий лейаут: флекс строка с равным расстоянием между элементами  */
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-start; /* Явно выравнивает по дополнительной оси */
 }
 
 .search-form__fieldset-title {
-  color: #fff;
-  font-family: Fira Sans Condensed;
-  font-size: 18px;
+  color: white;
+  font-family: inherit;
+  font-size: inherit;
   font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-weight: inherit;
+  line-height: 90%;
 }
 
-.content__details {
-  block-size: 100%;
+.search-form__fieldset-title {
+  margin-block-end: 7px; /* Отступ между лэйблом и инпутами */
 }
+
+.search-form__label {
+  display: flex;
+  flex-direction: row;
+  /* Чтобы верстка не прыгала, заранее добавляем прозрачный бордер по основной оси, 
+  он будет появляться в некоторых сценариях при фокусировке: */
+  border-inline: 1px solid transparent;
+}
+
+/* Textfield */
+
+.search-form__textfield {
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  border: 1px white solid; /* Задает общие настройки бордера */
+  border-inline: 0; /* Убирает бордер по основной оси */
+  padding-inline: 0; /* Явно убирает падинги по основной оси */
+  inline-size: 224px; /* Фиксированный размер поля ввода */
+}
+
+.search-form__textfield:focus {
+  outline: none; /* Обнуляет стандартную фокусировку */
+}
+
+/* Checkbox */
+
+/* Только при фокусировке */
+.search-form__label:has(:focus-visible) {
+  border-inline: 1px solid white; /* Появляется бордер по осноной оси */
+}
+
+/* При наведении */
+.search-form__label:hover {
+  cursor: pointer;
+}
+
+.search-form__checkbox-list {
+  /* Явно выстраиваем чекбоксы в строку */
+  display: flex;
+  flex-direction: row;
+  gap: 14px; /* Задает одинаковые отступы между чекбоксами */
+}
+
+/* Рисуем кастомный чекбокс */
+.search-form__pseudo-checkbox {
+  display: block;
+  block-size: 19px;
+  inline-size: 19px;
+  border: 1px solid white;
+  margin-inline-end: 5px;
+  padding: 1px;
+}
+
+/* Рисуем активный чекбокс псевдоэлементом */
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::before {
+  content: '';
+  display: block;
+  block-size: 100%;
+  inline-size: 100%;
+  background-color: white;
+}
+
+/* При наведении на весь лэйбл, текст будет подчеркиваться */
+.search-form__label > .search-form__label-text {
+  /* Делаем прозрачное подчеркивание заранее, 
+  чтобы не прыгала верстка при наведении */
+  border-bottom: solid transparent 1px;
+  /* Плавная анимация */
+  -webkit-transition: ease-out 0.3s;
+  -o-transition: ease-out 0.3s;
+  transition: ease-out 0.3s;
+}
+
+.search-form__label:hover > .search-form__label-text {
+  /* Проявляем подчеркивание */
+  border-bottom: solid white 1px;
+  /* Плавная анимация */
+  -webkit-transition: ease-out 0.3s;
+  -o-transition: ease-out 0.3s;
+  transition: ease-out 0.3s;
+}
+
+/* Submit button */
+
+.search-form__submit-button {
+  inline-size: 194px;
+  align-self: flex-end; /* Прижимает кнопку в конец дополнительной оси */
+}
+
+/* Details */
+
+/* List */
 
 .content__list {
-  position: relative;
-  block-size: 322px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  position: relative; /* Для позиционирования прелоадера */
+  block-size: 292px;
+  overflow-y: auto; /* Добавит скролл по дополнительной оси */
+  overflow-x: hidden; /* Явно скроет возможный скролл по основной оси */
 }
 
+/* Добавляем отступы всем элементам списка, кроме последнего */
 .content__list-item:not(:last-child) {
   margin-block-end: 30px;
 }
 
+.content__card-link {
+  text-decoration: none; /* Убирает дефолтное подчеркивание */
+  color: #fff;
+  margin: 2px; /* Чтобы видеть обводку при фокусировке */
+}
+
+/* Cards */
+
 .content__video-card {
-  display: grid;
-  grid-template-columns: 1fr 194px;
-  gap: 8px;
+  /* Лейаут карточки: явная строка, описание и превью прижимаются к разным краям*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .content__video-card-thumbnail {
-  inline-size: 100%;
+  inline-size: 194px;
   block-size: 103px;
-  object-fit: cover;
+  object-fit: cover; /* Растягивает изображение по заданным размерам */
 }
 
-.content__card-link {
-  text-decoration: none;
-  color: #fff;
+.content__video-card-description-container {
+  /* Ограничиваем пространство для описания.
+  Задумано, что текст, который не влезет в блок, будет сокращен. 
+  И появится троеточие. */
+  max-inline-size: 200px;
+  max-block-size: 103px;
+  padding: 2px;
 }
 
 .content__video-card-title {
@@ -131,6 +292,12 @@ ol {
   font-weight: 700;
   line-height: 100%; /* 30px */
   text-transform: uppercase;
+  /* Текст, который не влезет в блок, будет сокращен. 
+  И появится троеточие. */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-block-end: 6px;
 }
 
 .content__video-card-description {
@@ -138,7 +305,63 @@ ol {
   font-size: 18px;
   font-weight: 400;
   line-height: 16.2px; /* 90% */
+  /* Текст, который не влезет в блок, будет сокращен. 
+  И появится троеточие. */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
+
+/* Текущая карточка */
+
+.content__card-link {
+  display: block;
+}
+
+.content__card-link_current {
+  background-color: #545050;
+}
+
+/* Карточка при наведении*/
+
+/* При наведении на карточку, текст будет подчеркиваться */
+/* Только если карточка уже не является активной */
+.content__card-link:not(.content__card-link_current) .content__video-card-title,
+.content__card-link:not(.content__card-link_current)
+  .content__video-card-description {
+  /* Делаем прозрачное подчеркивание заранее, 
+  чтобы не прыгала верстка при наведении */
+  border-bottom: solid transparent 1px;
+  /* Плавная анимация */
+  -webkit-transition: ease-out 0.3s;
+  -o-transition: ease-out 0.3s;
+  transition: ease-out 0.3s;
+}
+
+.content__card-link:not(.content__card-link_current):hover
+  .content__video-card-title,
+.content__card-link:not(.content__card-link_current):hover
+  .content__video-card-description {
+  /* Проявляем подчеркивание */
+  border-bottom: solid white 1px;
+  /* Плавная анимация */
+  -webkit-transition: ease-out 0.3s;
+  -o-transition: ease-out 0.3s;
+  transition: ease-out 0.3s;
+}
+
+/* Карточка при фокусировке */
+
+.content__card-link:focus {
+  outline: none;
+}
+
+.content__card-link:focus-visible {
+  outline: solid 1px white;
+  outline-offset: 1px;
+}
+
+/* Скрытие элементов */
 
 .visually-hidden {
   position: absolute;
