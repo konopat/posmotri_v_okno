@@ -159,14 +159,20 @@ ol {
   border: 1px solid transparent;
 }
 
-/* Только при фокусировке */
+/* При фокусировке на лейбле */
 .search-form__label:has(:focus-visible) {
-  border: 1px solid white;
+  outline: 1px solid white;
+}
+
+/* При фокусировке а текстовом поле подгоняем рамку под макет */
+.search-form__label:has(.search-form__textfield) {
+  outline-offset: -2px;
 }
 
 /* Textfield */
 
 .search-form__textfield {
+  appearance: none;
   font-family: inherit;
   color: inherit;
   font-size: inherit;
