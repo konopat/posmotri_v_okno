@@ -154,9 +154,14 @@ ol {
 .search-form__label {
   display: flex;
   flex-direction: row;
-  /* Чтобы верстка не прыгала, заранее добавляем прозрачный бордер по основной оси, 
+  /* Чтобы верстка не прыгала, заранее добавляем прозрачный бордер, 
   он будет появляться в некоторых сценариях при фокусировке: */
-  border-inline: 1px solid transparent;
+  border: 1px solid transparent;
+}
+
+/* Только при фокусировке */
+.search-form__label:has(:focus-visible) {
+  border: 1px solid white;
 }
 
 /* Textfield */
@@ -177,11 +182,6 @@ ol {
 }
 
 /* Checkbox */
-
-/* Только при фокусировке */
-.search-form__label:has(:focus-visible) {
-  border-inline: 1px solid white; /* Появляется бордер по осноной оси */
-}
 
 /* При наведении */
 .search-form__label:hover {
