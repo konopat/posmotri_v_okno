@@ -57,7 +57,7 @@ ol {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  border: 1px solid white;
+  border: 1px solid currentColor;
   padding-block: 5px;
 }
 
@@ -90,7 +90,6 @@ ol {
   display: grid; /* Основной лэйаут: 2 колонки, правая с фиксированной шириной, */
   grid-template-columns: 1fr 396px; /* все остальное пространство занимает левая */
   inline-size: 100%; /* Наследует всю ширину страницы */
-  block-size: 534px; /* Фиксированная высота */
   align-items: end; /* Прижимает все к концу по дополнительной оси */
   gap: 30px; /* Расстояние между колонками */
   padding-inline: 30px 33px; /* Отступы внутри основного контейнера */
@@ -127,6 +126,7 @@ ol {
   block-size: 100%;
   inline-size: 100%;
   object-fit: cover;
+  object-position: center; /* Отцентрирует изображение, если из-за пропорций оно не влезет в контейнер */
 }
 
 /* Search form */
@@ -154,6 +154,7 @@ ol {
 .search-form__label {
   display: flex;
   flex-direction: row;
+  align-items: center;
   /* Чтобы верстка не прыгала, заранее добавляем прозрачный бордер, 
   он будет появляться в некоторых сценариях при фокусировке: */
   border: 1px solid transparent;
@@ -177,7 +178,7 @@ ol {
   color: inherit;
   font-size: inherit;
   background-color: transparent;
-  border: 1px white solid; /* Задает общие настройки бордера */
+  border: 1px currentColor solid; /* Задает общие настройки бордера */
   border-inline: 0; /* Убирает бордер по основной оси */
   padding-inline: 0; /* Явно убирает падинги по основной оси */
   inline-size: 224px; /* Фиксированный размер поля ввода */
@@ -254,8 +255,7 @@ ol {
 .content__list {
   position: relative; /* Для позиционирования прелоадера */
   block-size: 292px;
-  overflow-y: auto; /* Добавит скролл по дополнительной оси */
-  overflow-x: hidden; /* Явно скроет возможный скролл по основной оси */
+  overflow: auto; /* Добавит скролл по дополнительной оси */
 }
 
 /* Добавляем отступы всем элементам списка, кроме последнего */
@@ -263,70 +263,19 @@ ol {
   margin-block-end: 30px;
 }
 
+/* Cards */
+
 .content__card-link {
+  display: block;
   text-decoration: none; /* Убирает дефолтное подчеркивание */
   color: #fff;
   margin: 2px; /* Чтобы видеть обводку при фокусировке */
 }
 
-/* Cards */
+/* Текущая и активная карточка */
 
-.content__video-card {
-  /* Лейаут карточки: явная строка, описание и превью прижимаются к разным краям*/
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.content__video-card-thumbnail {
-  inline-size: 194px;
-  block-size: 103px;
-  object-fit: cover; /* Растягивает изображение по заданным размерам */
-}
-
-.content__video-card-description-container {
-  /* Ограничиваем пространство для описания.
-  Задумано, что текст, который не влезет в блок, будет сокращен. 
-  И появится троеточие. */
-  max-inline-size: 200px;
-  max-block-size: 103px;
-  padding: 2px;
-}
-
-.content__video-card-title {
-  font-family: Oswald, sans-serif;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; /* 30px */
-  text-transform: uppercase;
-  /* Текст, который не влезет в блок, будет сокращен. 
-  И появится троеточие. */
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  margin-block-end: 6px;
-}
-
-.content__video-card-description {
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 16.2px; /* 90% */
-  /* Текст, который не влезет в блок, будет сокращен. 
-  И появится троеточие. */
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/* Текущая карточка */
-
-.content__card-link {
-  display: block;
-}
-
-.content__card-link_current {
+.content__card-link_current,
+.content__card-link:active {
   background-color: #545050;
 }
 
@@ -352,10 +301,6 @@ ol {
   .content__video-card-description {
   /* Проявляем подчеркивание */
   border-bottom: solid white 1px;
-  /* Плавная анимация */
-  -webkit-transition: ease-out 0.3s;
-  -o-transition: ease-out 0.3s;
-  transition: ease-out 0.3s;
 }
 
 /* Карточка при фокусировке */
@@ -367,6 +312,55 @@ ol {
 .content__card-link:focus-visible {
   outline: solid 1px white;
   outline-offset: 1px;
+}
+
+.content__video-card {
+  /* Лейаут карточки: явная строка, описание и превью прижимаются к разным краям*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content__video-card-thumbnail {
+  inline-size: 194px;
+  block-size: 103px;
+  object-fit: cover; /* Растягивает изображение по заданным размерам */
+  object-position: center; /* Отцентрирует изображение, если из-за пропорций оно не влезет в контейнер */
+}
+
+.content__video-card-description-container {
+  /* Ограничиваем пространство для описания.
+  Задумано, что текст, который не влезет в блок, будет сокращен. 
+  И появится троеточие. */
+  max-inline-size: 200px;
+  padding: 2px;
+}
+
+.content__video-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 30px */
+  text-transform: uppercase;
+  /* Текст, который не влезет в блок, будет сокращен. 
+  И появится троеточие. */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-block-end: 6px;
+}
+
+.content__video-card-description {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16.2px; /* 90% */
+  /* Текст, который не влезет в блок, будет сокращен. 
+  И появится троеточие. */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /* Скрытие элементов */
