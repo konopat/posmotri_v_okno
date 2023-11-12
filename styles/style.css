@@ -15,6 +15,7 @@ html {
 .page {
   display: flex;
   align-items: center; /* Центрирует весь контент по дополнительной оси */
+  padding-inline: 30px 33px; /* Отступы внутри основного контейнера */
   inline-size: 1200px;
   block-size: 100%;
   margin: auto;
@@ -86,13 +87,11 @@ ol {
 /* Content */
 
 .content {
-  /* padding-block-start: 138px; Отступ сверху */
   display: grid; /* Основной лэйаут: 2 колонки */
   grid-template-columns: 2fr 1fr; /* Относительные размеры, чтобы не появлялось лишних скроллбаров */
   inline-size: 100%; /* Наследует всю ширину страницы */
   align-items: end; /* Прижимает все к концу по дополнительной оси */
   gap: 30px; /* Расстояние между колонками */
-  padding-inline: 30px 33px; /* Отступы внутри основного контейнера */
 }
 
 /* Главный заголовок */
