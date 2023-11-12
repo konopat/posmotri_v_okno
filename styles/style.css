@@ -254,6 +254,7 @@ ol {
 .content__list {
   position: relative; /* Для позиционирования прелоадера */
   block-size: 292px;
+  inline-size: 100%;
   overflow-y: auto; /* Добавит скролл по дополнительной оси */
 }
 
