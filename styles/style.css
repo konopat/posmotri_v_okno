@@ -15,7 +15,7 @@ html {
 .page {
   display: flex;
   align-items: center; /* Центрирует весь контент по дополнительной оси */
-  padding-inline: 30px 38px; /* Отступы внутри основного контейнера */
+  padding-inline: 30px 26px; /* Отступы внутри основного контейнера */
   inline-size: 1200px;
   block-size: 100%;
   margin: auto;
